@@ -1,4 +1,4 @@
-name: git
+name: git-confined
 version: "v2.41.0"
 summary: Git SCM
 description: |
