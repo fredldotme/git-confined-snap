@@ -1,0 +1,55 @@
+name: git
+version: "v2.41.0"
+summary: Git SCM
+description: |
+  Git is a fast, scalable, distributed revision control system with an unusually rich command set that provides both high-level operations and full access to internals.
+  
+  Git is an Open Source project covered by the GNU General Public License version 2 (some parts of it are under different licenses, compatible with the GPLv2). It was originally written by Linus Torvalds with help of a group of hackers around the net.
+confinement: strict
+base: core22
+compression: lzo
+
+architectures:
+- build-on: amd64
+- build-on: arm64
+- build-on: armhf
+
+apps:
+  git:
+    command: usr/bin/git
+    plugs: [ home, removable-media, network, ssh-keys, ssh-public-keys ]
+
+lint:
+  ignore:
+    - classic
+    - library
+
+layout:
+  /etc/gitconfig:
+    bind-file: $SNAP_DATA/etc/gitconfig
+  /usr/lib/git-core:
+    symlink: $SNAP/usr/lib/git-core
+  /usr/share/git-core/templates:
+    symlink: $SNAP/usr/share/git-core/templates
+
+parts:
+  git:
+    source: https://github.com/git/git.git
+    source-tag: v2.41.0
+    source-depth: 1
+    plugin: autotools
+    autotools-configure-parameters:
+      - --prefix=/usr
+      - --with-curl
+      - --with-expat
+    build-packages:
+      - build-essential
+      - gettext
+      - libssl-dev
+      - libexpat1-dev
+      - zlib1g-dev
+    stage-packages:
+      - gettext
+      - libcurl4-openssl-dev
+      - zlib1g
+      - openssh-client
