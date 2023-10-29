@@ -15,7 +15,7 @@ architectures:
 - build-on: armhf
 
 apps:
-  git:
+  git-confined:
     command: usr/bin/git
     plugs: [ home, removable-media, network, ssh-keys, ssh-public-keys ]
 
@@ -27,8 +27,8 @@ lint:
 layout:
   /etc/gitconfig:
     bind-file: $SNAP_DATA/etc/gitconfig
-  /usr/lib/git-core:
-    symlink: $SNAP/usr/lib/git-core
+  /usr/libexec/git-core:
+    symlink: $SNAP/usr/libexec/git-core
   /usr/share/git-core/templates:
     symlink: $SNAP/usr/share/git-core/templates
 
@@ -53,3 +53,4 @@ parts:
       - libcurl4-openssl-dev
       - zlib1g
       - openssh-client
+      - man
