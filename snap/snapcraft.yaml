@@ -16,6 +16,11 @@ architectures:
 
 apps:
   git-confined:
+    environment:
+      MAN_TEST_DISABLE_SYSTEM_CONFIG: 1
+      MANPATH: $SNAP/usr/share/man
+      GROFF_FONT_PATH: $SNAP/usr/share/groff/current/font
+      GROFF_TMAC_PATH: $SNAP/usr/share/groff/current/tmac
     command: usr/bin/git
     plugs: [ home, removable-media, network, ssh-keys, ssh-public-keys ]
 
@@ -31,26 +36,40 @@ layout:
     symlink: $SNAP/usr/libexec/git-core
   /usr/share/git-core/templates:
     symlink: $SNAP/usr/share/git-core/templates
+  /etc/manpath.config:
+    symlink: $SNAP/etc/manpath.config
+  /usr/share/locale:
+    bind: $SNAP/usr/share/locale
+  /usr/lib/man-db:
+    bind: $SNAP/usr/lib/man-db
 
 parts:
   git:
     source: https://github.com/git/git.git
-    source-tag: v2.41.0
+    source-tag: v2.42.0
     source-depth: 1
     plugin: autotools
     autotools-configure-parameters:
       - --prefix=/usr
       - --with-curl
       - --with-expat
+    override-prime: |
+      craftctl default
+      cd $CRAFT_PART_BUILD
+      DESTDIR=$CRAFT_PRIME make install-man
     build-packages:
       - build-essential
       - gettext
       - libssl-dev
       - libexpat1-dev
       - zlib1g-dev
+      - asciidoc
+      - xmlto
     stage-packages:
       - gettext
       - libcurl4-openssl-dev
       - zlib1g
       - openssh-client
       - man
+      - man-db
+      - groff-base
