@@ -75,5 +75,10 @@ parts:
       - man
       - man-db
       - groff-base
-      - vi
+      - vim
       - nano
+  wrappers:
+    plugin: dump
+    source: snap/local
+    organize:
+      '*': usr/bin/
