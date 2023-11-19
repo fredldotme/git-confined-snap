@@ -75,3 +75,5 @@ parts:
       - man
       - man-db
       - groff-base
+      - vi
+      - nano
