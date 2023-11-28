@@ -39,7 +39,7 @@ layout:
   /usr/share/git-core/templates:
     symlink: $SNAP/usr/share/git-core/templates
   /etc/manpath.config:
-    symlink: $SNAP/etc/manpath.config
+    bind-file: $SNAP/etc/manpath.config
   /usr/share/locale:
     bind: $SNAP/usr/share/locale
   /usr/lib/man-db:
