@@ -40,6 +40,8 @@ layout:
     symlink: $SNAP/usr/share/git-core/templates
   /etc/manpath.config:
     bind-file: $SNAP/etc/manpath.config
+  /etc/nanorc:
+    bind-file: $SNAP/etc/nanorc
   /usr/share/locale:
     bind: $SNAP/usr/share/locale
   /usr/lib/man-db:
