@@ -23,6 +23,7 @@ apps:
       MANPATH: $SNAP/usr/share/man
       GROFF_FONT_PATH: $SNAP/usr/share/groff/current/font
       GROFF_TMAC_PATH: $SNAP/usr/share/groff/current/tmac
+      GIT_SSH_COMMAND: ssh -o UserKnownHostsFile=$SNAP_USER_COMMON/known_hosts
     command: usr/bin/git
     plugs: [ home, removable-media, network, ssh-keys, ssh-public-keys ]
 
