@@ -24,6 +24,7 @@ apps:
       GROFF_FONT_PATH: $SNAP/usr/share/groff/current/font
       GROFF_TMAC_PATH: $SNAP/usr/share/groff/current/tmac
       GIT_SSH_COMMAND: ssh -o UserKnownHostsFile=$SNAP_USER_COMMON/known_hosts
+    command-chain: [ usr/bin/envsetup ]
     command: usr/bin/git
     plugs: [ home, removable-media, network, ssh-keys, ssh-public-keys ]
 
@@ -43,10 +44,14 @@ layout:
     bind-file: $SNAP/etc/manpath.config
   /etc/nanorc:
     bind-file: $SNAP/etc/nanorc
+  /etc/vim/vimrc:
+    bind-file: $SNAP/etc/vim/vimrc
   /usr/share/locale:
     bind: $SNAP/usr/share/locale
   /usr/lib/man-db:
     bind: $SNAP/usr/lib/man-db
+  /usr/share/nano:
+    bind: $SNAP/usr/share/nano
 
 parts:
   git:
