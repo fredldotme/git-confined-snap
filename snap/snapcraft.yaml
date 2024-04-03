@@ -1,5 +1,5 @@
 name: git-confined
-version: "v2.43.0"
+adopt-info: git
 summary: Git SCM
 description: |
   Git is a fast, scalable, distributed revision control system with an unusually rich command set that provides both high-level operations and full access to internals.
@@ -26,7 +26,7 @@ apps:
       GIT_SSH_COMMAND: ssh -o UserKnownHostsFile=$SNAP_USER_COMMON/known_hosts
     command-chain: [ usr/bin/envsetup ]
     command: usr/bin/git
-    plugs: [ home, removable-media, network, ssh-keys, ssh-public-keys ]
+    plugs: [ home, removable-media, network, ssh-keys, ssh-public-keys, gpg-keys, gpg-public-keys ]
 
 lint:
   ignore:
@@ -56,13 +56,17 @@ layout:
 parts:
   git:
     source: https://github.com/git/git.git
-    source-tag: v2.43.0
+    source-tag: v2.44.0
     source-depth: 1
     plugin: autotools
     autotools-configure-parameters:
       - --prefix=/usr
       - --with-curl
       - --with-expat
+    override-build: |
+      cd $CRAFT_PART_SRC
+      craftctl set version="$(git describe --abbrev=0 --tags)"
+      craftctl default
     override-prime: |
       craftctl default
       cd $CRAFT_PART_BUILD
@@ -85,6 +89,7 @@ parts:
       - groff-base
       - vim
       - nano
+      - gpg
   wrappers:
     plugin: dump
     source: snap/local
