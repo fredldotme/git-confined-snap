@@ -34,9 +34,9 @@ lint:
     - library
 plugs:
   dot-local-src:
-  interface: personal-files
-  read: [$HOME/.local/src]
-  write: [$HOME/.local/src]
+    interface: personal-files
+    read: [$HOME/.local/src]
+    write: [$HOME/.local/src]
 layout:
   /etc/gitconfig:
     bind-file: $SNAP_DATA/etc/gitconfig
