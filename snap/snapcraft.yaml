@@ -8,13 +8,16 @@ description: |
   
   In order to enable this Snap as your preferred git tool, run: `sudo snap alias git-confined git`
 confinement: strict
-base: core22
+base: core24
 compression: lzo
 
-architectures:
-- build-on: amd64
-- build-on: arm64
-- build-on: armhf
+platforms:
+  arm64:
+    build-on: [arm64]
+  amd64:
+    build-on: [amd64]
+  armhf:
+    build-on: [armhf]
 
 apps:
   git-confined:
