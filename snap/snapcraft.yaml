@@ -26,7 +26,7 @@ apps:
       GIT_SSH_COMMAND: ssh -o UserKnownHostsFile=$SNAP_USER_COMMON/known_hosts
     command-chain: [ usr/bin/envsetup ]
     command: usr/bin/git
-    plugs: [ home, removable-media, network, ssh-keys, ssh-public-keys, gpg-keys, gpg-public-keys ]
+    plugs: [ home, personal-files, removable-media, network, ssh-keys, ssh-public-keys, gpg-keys, gpg-public-keys ]
 
 lint:
   ignore:
