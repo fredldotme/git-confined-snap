@@ -29,13 +29,17 @@ apps:
       GIT_SSH_COMMAND: ssh -o UserKnownHostsFile=$SNAP_USER_COMMON/known_hosts
     command-chain: [ usr/bin/envsetup ]
     command: usr/bin/git
-    plugs: [ home, removable-media, network, ssh-keys, ssh-public-keys, gpg-keys, gpg-public-keys ]
+    plugs: [ home, dot-local-src, removable-media, network, ssh-keys, ssh-public-keys, gpg-keys, gpg-public-keys ]
 
 lint:
   ignore:
     - classic
     - library
-
+plugs:
+  dot-local-src:
+    interface: personal-files
+    read: [$HOME/.local/src]
+    write: [$HOME/.local/src]
 layout:
   /etc/gitconfig:
     bind-file: $SNAP_DATA/etc/gitconfig
