@@ -4,4 +4,4 @@ if [ -z "$EDITOR" ]; then
     export EDITOR=nano
 fi
 
-exec $@
+exec "$@"
