@@ -30,6 +30,7 @@ apps:
     command-chain: [ usr/bin/envsetup ]
     command: usr/bin/git
     plugs: [ home, dot-local-src, removable-media, network, ssh-keys, ssh-public-keys, gpg-keys, gpg-public-keys ]
+    completer: usr/share/bash-completion/completions/git
 
 lint:
   ignore:
@@ -77,6 +78,10 @@ parts:
     override-prime: |
       craftctl default
       cd $CRAFT_PART_BUILD
+      mkdir -p $CRAFT_PRIME/usr/share/bash-completion/completions/
+      cp -a $CRAFT_PART_BUILD/contrib/completion/git-completion.bash $CRAFT_PRIME/usr/share/bash-completion/completions/git
+      echo "" >> $CRAFT_PRIME/usr/share/bash-completion/completions/git
+      echo "___git_complete git-confined __git_main" >> $CRAFT_PRIME/usr/share/bash-completion/completions/git
       DESTDIR=$CRAFT_PRIME make install-man
     build-packages:
       - build-essential
