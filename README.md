@@ -1,7 +1,7 @@
-# git-scm as a Snap
+# Git SCM as a Snap
 
-Git for Snap-supporting environments like Ubuntu Core and Ubuntu Touch
+Git for Snap-supporting environments like Ubuntu Desktop, Ubuntu Core and Ubuntu Touch
 
-- Includes everything regular git supports as per upstreams preference
-- Packages all dependencies it needs for proper functionality
-- Fits perfectly in a Snap environment
+## License
+
+GPL v2
