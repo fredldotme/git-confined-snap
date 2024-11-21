@@ -1,4 +1,4 @@
-# git-confined
+# git-scm as a Snap
 
 Git for Snap-supporting environments like Ubuntu Core and Ubuntu Touch
 

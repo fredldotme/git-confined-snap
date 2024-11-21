@@ -1,4 +1,4 @@
-name: git-confined
+name: git-scm
 adopt-info: git
 summary: Git SCM
 description: |
@@ -6,7 +6,7 @@ description: |
   
   Git is an Open Source project covered by the GNU General Public License version 2 (some parts of it are under different licenses, compatible with the GPLv2). It was originally written by Linus Torvalds with help of a group of hackers around the net.
   
-  In order to enable this Snap as your preferred git tool, run: `sudo snap alias git-confined git`
+  In order to enable this Snap as your preferred git tool, run: `sudo snap alias git-scm git`
 confinement: strict
 base: core24
 compression: lzo
@@ -20,7 +20,7 @@ platforms:
     build-on: [armhf]
 
 apps:
-  git-confined:
+  git-scm:
     environment:
       MAN_TEST_DISABLE_SYSTEM_CONFIG: 1
       MANPATH: $SNAP/usr/share/man
@@ -81,7 +81,7 @@ parts:
       mkdir -p $CRAFT_PRIME/usr/share/bash-completion/completions/
       cp -a $CRAFT_PART_BUILD/contrib/completion/git-completion.bash $CRAFT_PRIME/usr/share/bash-completion/completions/git
       echo "" >> $CRAFT_PRIME/usr/share/bash-completion/completions/git
-      echo "___git_complete git-confined __git_main" >> $CRAFT_PRIME/usr/share/bash-completion/completions/git
+      echo "___git_complete git-scm __git_main" >> $CRAFT_PRIME/usr/share/bash-completion/completions/git
       DESTDIR=$CRAFT_PRIME make install-man
     build-packages:
       - build-essential
