@@ -7,6 +7,8 @@ description: |
   
   Git is an Open Source project covered by the GNU General Public License version 2 (some parts of it are under different licenses, compatible with the GPLv2). It was originally written by Linus Torvalds with help of a group of hackers around the net.
   
+  More on usage at: https://git-scm.com/docs
+  
   In order to enable this Snap as your preferred git tool, run: `sudo snap alias git-scm git`
 confinement: strict
 base: core24
