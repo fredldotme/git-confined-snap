@@ -8,36 +8,16 @@ description: |
   
   In order to enable this Snap as your preferred git tool, run: `sudo snap alias git-confined git`
 confinement: strict
-base: core22
+base: core24
 compression: lzo
 
-architectures:
-  - build-on: amd64
-  - build-on: arm64
-
-## on consumer side, add plug and layout like
-#  plugs:
-#    git-plug:
-#      interface: content
-#      content: git-cli
-#      target: $SNAP/git-snap
-#      default-provider: git-confined
-# layout:
-#   $SNAP/usr/bin:
-#     bind: $SNAP/git-snap/bin
-#   /usr/libexec/git-core:
-#     symlink: $SNAP/git-snap/git-core
-#   /usr/share/git-core/templates:
-#     symlink: $SNAP/git-snap/templates
-slots:
-  git-binary:
-    interface: content
-    content: git-cli
-    source:
-      read:
-        - $SNAP/usr/bin
-        - $SNAP/usr/libexec/git-core
-        - $SNAP/usr/share/git-core/templates
+platforms:
+  arm64:
+    build-on: [arm64]
+  amd64:
+    build-on: [amd64]
+  armhf:
+    build-on: [armhf]
 
 apps:
   git-confined:
@@ -84,7 +64,7 @@ layout:
 parts:
   git:
     source: https://github.com/git/git.git
-    source-tag: v2.47.1
+    source-tag: v2.47.0
     source-depth: 1
     plugin: autotools
     autotools-configure-parameters:
