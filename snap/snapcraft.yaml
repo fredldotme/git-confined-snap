@@ -19,6 +19,28 @@ platforms:
   armhf:
     build-on: [armhf]
 
+## on consumer side, add plug and layout like
+#  plugs:
+#    git-cli:
+#      interface: content
+#      target: $SNAP/git-snap
+#      default-provider: git-confined
+# layout:
+#   /usr/local/bin:
+#     bind: $SNAP/git-snap/bin
+#   /usr/libexec/git-core:
+#     symlink: $SNAP/git-snap/git-core
+#   /usr/share/git-core/templates:
+#     symlink: $SNAP/git-snap/templates
+slots:
+  git-cli:
+    interface: content
+    source:
+      read:
+        - $SNAP/usr/bin
+        - $SNAP/usr/libexec/git-core
+        - $SNAP/usr/share/git-core/templates
+
 apps:
   git-confined:
     environment:
